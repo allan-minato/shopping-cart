@@ -18,9 +18,12 @@ function addLoading() {
 function removeLoading() {
   document.querySelector('.loading').remove();
 }
-
-productsList.forEach((product) => {
+const listOfProduct = () => {
   addLoading();
-  products.appendChild(createProductElement(product));
+  productsList.forEach((product) => {
+    products.appendChild(createProductElement(product));
+  });
   removeLoading();
-});
+};
+
+listOfProduct();
