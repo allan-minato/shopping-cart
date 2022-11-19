@@ -11,7 +11,7 @@ const products = document.querySelector('.products');
 function addLoading() {
   const h2 = document.createElement('h2');
   h2.className = 'loading';
-  h2.innerHTML = 'Carregando...';
+  h2.innerHTML = 'carregando...';
   products.appendChild(h2);
 }
 
@@ -19,8 +19,8 @@ function removeLoading() {
   document.querySelector('.loading').remove();
 }
 
-addLoading();
 productsList.forEach((product) => {
+  addLoading();
   products.appendChild(createProductElement(product));
+  removeLoading();
 });
-removeLoading();
