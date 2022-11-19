@@ -8,6 +8,19 @@ document.querySelector('.cep-button').addEventListener('click', searchCep);
 const productsList = await fetchProductsList('computador');
 const products = document.querySelector('.products');
 
+function addLoading() {
+  const h2 = document.createElement('h2');
+  h2.className = 'loading';
+  h2.innerHTML = 'Carregando...';
+  products.appendChild(h2);
+}
+
+function removeLoading() {
+  document.querySelector('.loading').remove();
+}
+
+addLoading();
 productsList.forEach((product) => {
   products.appendChild(createProductElement(product));
 });
+removeLoading();
