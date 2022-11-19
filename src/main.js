@@ -5,7 +5,6 @@ import { createProductElement } from './helpers/shopFunctions';
 
 document.querySelector('.cep-button').addEventListener('click', searchCep);
 
-const productsList = await fetchProductsList('computador');
 const products = document.querySelector('.products');
 
 function addLoading() {
@@ -18,12 +17,14 @@ function addLoading() {
 function removeLoading() {
   document.querySelector('.loading').remove();
 }
-const listOfProduct = () => {
+
+const listOfProduct = async () => {
   addLoading();
+  const productsList = await fetchProductsList('computador');
+  removeLoading();
   productsList.forEach((product) => {
     products.appendChild(createProductElement(product));
   });
-  removeLoading();
 };
 
 listOfProduct();
