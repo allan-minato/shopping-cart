@@ -4,7 +4,10 @@ import product from './mocks/product';
 
 // implemente seus testes aqui
 describe('Teste a função fetchProduct', () => {
-  it('...', () => {
-    
+  it('Teste se "FetchProduct" é uma função.', () => {
+    expect(typeof fetchProduct).toBe('function')
+  });
+  it('Teste "FetchProduct" com o parâmetro "MLB1405519561".', () => {
+    expect(fetchProduct('MLB1405519561')).not.toBe(undefined)
   });
 });
