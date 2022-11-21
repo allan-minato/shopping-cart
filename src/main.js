@@ -1,7 +1,8 @@
 import { searchCep } from './helpers/cepFunctions';
 import './style.css';
-import { fetchProductsList } from './helpers/fetchFunctions';
-import { createProductElement } from './helpers/shopFunctions';
+import { fetchProduct, fetchProductsList } from './helpers/fetchFunctions';
+import { createCartProductElement, createProductElement } from './helpers/shopFunctions';
+import { saveCartID, getSavedCartIDs } from './helpers/cartFunctions';
 
 document.querySelector('.cep-button').addEventListener('click', searchCep);
 
@@ -12,13 +13,6 @@ function addLoading() {
   h2.className = 'loading';
   h2.innerHTML = 'carregando...';
   products.appendChild(h2);
-}
-
-function addError() {
-  const error = document.createElement('h2');
-  h2.className = 'error';
-  h2.innerHTML = 'Algum erro ocorreu, recarregue a página e tente novamente';
-  products.appendChild(error);
 }
 
 function removeLoading() {
@@ -40,5 +34,14 @@ const listOfProduct = async () => {
     products.appendChild(errorElement);
   }
 };
+
+products.addEventListener('click', async (param) => {
+  const cartProducts = document.querySelector('.cart__products');
+  const id = param.target.parentNode.firstChild.innerText;
+  const itemData = await fetchProduct(id);
+  const productCart = createCartProductElement(itemData);
+  cartProducts.appendChild(productCart);
+  saveCartID(id);
+});
 
 listOfProduct();
