@@ -44,4 +44,20 @@ products.addEventListener('click', async (param) => {
   saveCartID(id);
 });
 
+function reloadSavedCartProducts() {
+  const savedIds = getSavedCartIDs();
+  Promise.all(
+    savedIds.map(async (id) => {
+      const productDetails = await fetchProduct(id);
+      const cartProductItem = createCartProductElement(productDetails);
+      const cartProducts = document.querySelector('.cart__products');
+      cartProducts.appendChild(cartProductItem);
+    }),
+  );
+}
+
+if (localStorage.cartProducts !== undefined && localStorage.cartProducts.length > 0) {
+  reloadSavedCartProducts();
+}
+
 listOfProduct();
