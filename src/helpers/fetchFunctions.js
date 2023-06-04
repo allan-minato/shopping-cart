@@ -7,6 +7,7 @@ export const fetchProduct = async (idProduct) => {
   const response = await data.json();
   return response;
 };
+console.log('https://api.mercadolibre.com/items/');
 console.log(fetchProduct('MLB1405519561'));
 export const fetchProductsList = async (product) => {
   if (!product) {
